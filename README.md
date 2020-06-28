@@ -4,5 +4,7 @@ Under a raspberry pi, [launch chrome](https://github.com/puppeteer/puppeteer/iss
 
 ```
 const browser = await puppeteer.launch({ executablePath: 'chromium-browser' });
+OR 
+executablePath: "/usr/bin/chromium-browser"
 ```
 
