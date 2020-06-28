@@ -2,6 +2,7 @@ require('dotenv').config();
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
+const TIMEOUT = 60000;
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -23,8 +24,8 @@ const transporter = nodemailer.createTransport({
   await Promise.all(validEntries.map(async (entry) => {
     const page = await browser.newPage();
     try {
-      await page.goto(entry.page);
-      await page.waitForXPath(entry.selector);
+      await page.goto(entry.page, { waitUntil: 'domcontentloaded' });
+      await page.waitForXPath(entry.selector, { timeout: TIMEOUT });
       await page.close();
     } catch(error) {
       const mailOptions = {
