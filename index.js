@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 
 (async () => {
   const config = JSON.parse(fs.readFileSync('./config.json', { encoding: 'utf8' }));
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
 
   const files = fs.readdirSync('.');
   const validEntries = config.filter(entry =>
