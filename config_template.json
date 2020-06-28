@@ -1,0 +1,7 @@
+[
+  {
+    "page": "https://eslint.org/docs/user-guide/getting-started",
+    "selector": "//*[text()='Getting Started with ESLint']",
+    "name": "eslintPage"
+  }
+]

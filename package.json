@@ -1,0 +1,13 @@
+{
+  "name": "site_watcher",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Quentin <quentin@emmerge.com>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "eslint": "^7.3.1",
+    "nodemailer": "^6.4.10",
+    "puppeteer": "^4.0.1"
+  }
+}
