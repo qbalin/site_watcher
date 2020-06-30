@@ -2,7 +2,7 @@ require('dotenv').config();
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-const TIMEOUT = 60000;
+const TIMEOUT = 300000;
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -43,6 +43,7 @@ const transporter = nodemailer.createTransport({
         }
       });
 
+      fs.writeFileSync(`${entry.name}.html`, await page.evalutate(p => document.body.innerHTML));
       await page.screenshot({path: `${entry.name}.png` });
     }
   }));
