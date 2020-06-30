@@ -43,7 +43,7 @@ const transporter = nodemailer.createTransport({
         }
       });
 
-      fs.writeFileSync(`${entry.name}.html`, await page.evalutate(p => document.body.innerHTML));
+      fs.writeFileSync(`${entry.name}.html`, await page.evaluate(p => document.body.innerHTML));
       await page.screenshot({path: `${entry.name}.png` });
     }
   }));
