@@ -2,7 +2,7 @@ require('dotenv').config();
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-const TIMEOUT = 300000;
+const TIMEOUT = 120000;
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -11,6 +11,18 @@ const transporter = nodemailer.createTransport({
     pass: process.env.GMAIL_PASSWORD
   }
 });
+
+const retryNTimes = async (times, callback) => {
+  try {
+    await callback();
+  } catch(error) {
+    if (times === 0) {
+      throw error;
+    } else {
+      await retryNTimes(times - 1, callback);
+    }
+  }
+};
 
 (async () => {
   const config = JSON.parse(fs.readFileSync('./config.json', { encoding: 'utf8' }));
@@ -24,9 +36,11 @@ const transporter = nodemailer.createTransport({
   await Promise.all(validEntries.map(async (entry) => {
     const page = await browser.newPage();
     try {
-      await page.goto(entry.page, { waitUntil: 'domcontentloaded' });
-      await page.waitForXPath(entry.selector, { timeout: TIMEOUT });
-      await page.close();
+      await retryNTimes(5, async () => {
+        await page.goto(entry.page, { waitUntil: 'domcontentloaded' });
+        await page.waitForXPath(entry.selector, { timeout: TIMEOUT });
+        await page.close();
+      })
     } catch(error) {
       const mailOptions = {
         from: process.env.GMAIL_ACCOUNT,
