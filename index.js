@@ -2,13 +2,13 @@ require('dotenv').config();
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-const TIMEOUT = 120000;
+const TIMEOUT = 3000;
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: process.env.GMAIL_ACCOUNT,
-    pass: process.env.GMAIL_PASSWORD
+    user: process.env.EMAIL_ACCOUNT,
+    pass: process.env.EMAIL_ACCOUNT_PASSWORD
   }
 });
 
