@@ -50,7 +50,7 @@ SEND_TO=emailAddressToNotify
 ```
 Nodemailer is used to send emails. To configure a GMail account from which the notifications can be sent, checkout [this page](https://nodemailer.com/usage/using-gmail/).
 
-## Raspberry Pi
+## Raspberry Pi vs Dev machine
 This script should run natively under Rapsberry Pi, provided Chromium is installed. To run it in debug mode on your development machine, replace the line
 
 ```javascript
@@ -62,6 +62,9 @@ by
 ```javascript
 const browser = await puppeteer.launch({ headless: false });
 ```
+
+## Scrape responsibly!
+Do not spam the websites you are watching! Watch them once a day, or less. Remember that every connection is energy spent :)
 
 ## References
 Under a raspberry pi, [launch chrome](https://github.com/puppeteer/puppeteer/issues/4249) with:
