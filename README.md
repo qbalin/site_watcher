@@ -41,14 +41,14 @@ To properly receive an email, you will need to configure an account that the scr
 touch .env
 ```
 
-In the `.env` file, add something like:
+In the `.env` file, add this, replacing the dummy values with proper credentials:
 
 ```
-GMAIL_PASSWORD=passwordToSendingAccount
-GMAIL_ACCOUNT=sendingAccount
+EMAIL_ACCOUNT_PASSWORD=passwordToSendingAccount
+EMAIL_ACCOUNT=sendingAccount
 SEND_TO=emailAddressToNotify
 ```
-Nodemailer is used to send emails. To configure a GMail account from which the notifications can be sent, checkout [this page](https://nodemailer.com/usage/using-gmail/).
+[Nodemailer](http://nodemailer.com/usage/) is used to send emails. To configure a GMail account from which the notifications can be sent, checkout [this page](https://nodemailer.com/usage/using-gmail/).
 
 ## Raspberry Pi vs Dev machine
 This script should run natively under Rapsberry Pi, provided Chromium is installed. To run it in debug mode on your development machine, replace the line
