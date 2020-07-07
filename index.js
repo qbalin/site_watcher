@@ -26,7 +26,14 @@ const retryNTimes = async (times, callback) => {
 
 (async () => {
   const config = JSON.parse(fs.readFileSync('./config.json', { encoding: 'utf8' }));
-  const browser = await puppeteer.launch({ executablePath: "/usr/bin/chromium-browser", args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+
+  const args = ['--no-sandbox', '--disable-setuid-sandbox'];
+  const torPorts = (process.env.TOR_PORTS || '').split(',');
+  if (torPorts) {
+    const port = torPorts[Math.floor(Math.random() * torPorts.length)];
+    args.push(`--proxy-server=socks5://127.0.0.1:${port}`);
+  }
+  const browser = await puppeteer.launch({ executablePath: "/usr/bin/chromium-browser", args });
 
   const files = fs.readdirSync('.');
   const validEntries = config.filter(entry =>
