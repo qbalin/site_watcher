@@ -66,6 +66,15 @@ const browser = await puppeteer.launch({ headless: false });
 ## Scrape responsibly!
 Do not spam the websites you are watching! Watch them once a day, or less. Remember that every connection is energy spent :)
 
+## Tor Support
+[This blogpost](https://levelup.gitconnected.com/anonymous-web-scrapping-with-node-js-tor-apify-and-cheerio-3b36ec6a45dc) explains quite clearly how to setup Tor and add ports to get a different address for each use. Once you attributed a list of ports, you can add it to the `.env` file, like so:
+
+```
+TOR_PORTS=9050,9052,9053,9054,9055
+```
+
+A random port will be selected at each run.
+
 ## References
 Under a raspberry pi, [launch chrome](https://github.com/puppeteer/puppeteer/issues/4249) with:
 
