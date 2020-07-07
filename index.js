@@ -29,7 +29,7 @@ const retryNTimes = async (times, callback) => {
 
   const args = ['--no-sandbox', '--disable-setuid-sandbox'];
   const torPorts = (process.env.TOR_PORTS || '').split(',');
-  if (torPorts) {
+  if (torPorts.length > 0) {
     const port = torPorts[Math.floor(Math.random() * torPorts.length)];
     args.push(`--proxy-server=socks5://127.0.0.1:${port}`);
   }
