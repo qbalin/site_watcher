@@ -2,7 +2,7 @@ require('dotenv').config();
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-const TIMEOUT = 3000;
+const TIMEOUT = 60000;
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
